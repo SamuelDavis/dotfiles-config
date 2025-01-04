@@ -220,7 +220,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while ~/.config/sway/status.sh; do sleep 1; done
+    status_command while php ~/.config/sway/status.php; do sleep 1; done
 
     colors {
         statusline #ffffff
@@ -254,3 +254,10 @@ exec swayidle -w \
 exec sway-audio-idle-inhibit
 
 input * xkb_numlock enabled
+
+output DP-1 position 0,0
+output DP-2 position 0,0
+output DP-6 position 0,0
+output HDMI-A-1 position 0,0
+output eDP-1 scale 1.5
+output eDP-2 scale 1.5
