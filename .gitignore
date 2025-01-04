@@ -1,0 +1,13 @@
+*
+!.gitignore
+
+!nvim/
+!nvim/**
+!sway/
+!sway/**
+!godot/
+!godot/**
+!nixos/
+!nixos/**
+
+godot/recent_dirs
