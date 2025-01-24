@@ -205,16 +205,20 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 2%+
     # Special key to take a screenshot with grim
     bindsym Print exec grim
+
+    # Media Controls (via Media Keys)
     bindsym --locked XF86AudioPlay exec playerctl play-pause
-    bindsym --locked $mod+Control+Down exec playerctl play-pause
     bindsym --locked XF86AudioPrev exec playerctl previous
-    bindsym --locked $mod+Control+Left exec playerctl previous
     bindsym --locked XF86AudioNext exec playerctl next
-    bindsym --locked $mod+Control+Right exec playerctl next
     bindsym --locked Shift+XF86AudioPrev exec playerctl position 15-
-    bindsym --locked Shift+$mod+Control+Left exec playerctl position 15-
     bindsym --locked Shift+XF86AudioNext exec playerctl position 15+
-    bindsym --locked Shift+$mod+Control+Right exec playerctl position 15+
+
+    # Media Controls (via Cursor Keys)
+    bindsym --locked $mod+Control+Down exec playerctl play-pause
+    bindsym --locked $mod+Control+Left exec playerctl previous
+    bindsym --locked $mod+Control+Right exec playerctl next
+    bindsym --locked $mod+Control+Left+Shift exec playerctl position 15-
+    bindsym --locked $mod+Control+Right+Shift exec playerctl position 15+
 
 #
 # Status Bar:
