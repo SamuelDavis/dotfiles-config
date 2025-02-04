@@ -13,17 +13,23 @@ $brightnessCurrent = trim(`brightnessctl get` ?? '');
 $brightnessMax = trim(`brightnessctl max` ?? '');
 $brightnessPercent = round($brightnessCurrent / $brightnessMax * 100);
 
-$batteryFile = '/sys/class/power_supply/BAT0/capacity';
-$battery = file_exists($batteryFile) ? trim(`cat $batteryFile` ?? '') : null;
+$battery = '/sys/class/power_supply/BAT0/capacity';
+$battery = file_exists($battery) ? trim(`cat $battery` ?? '') : null;
+$status = '/sys/class/power_supply/BAT0/status';
+$status = file_exists($status) ? trim(`cat $status` ?? '') : null;
+
+if ($status === 'Charging') $status = '+';
+elseif ($status === 'Discharging') $status = '-';
+elseif ($status === 'Not charging') $status = ' ';
+else $status = " ($status)";
 
 $time = date('Y-m-d h:i:s a');
 
 $output = [
 	"VOL $volume",
 	"SCR $brightnessPercent",
-	"BAT $battery",
+	"BAT $battery$status",
 	$time,
-
 ];
 if ($mediaStatus) array_unshift($output, $mediaStatus);
 echo implode(' | ', $output);
