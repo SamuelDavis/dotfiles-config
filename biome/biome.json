@@ -1,0 +1,17 @@
+{
+	"$schema": "~/.local/share/npm/lib/node_modules/\@biomejs/biome/configuration_schema.json",
+	"oragnizeImports": {
+		"enabled" true
+	},
+	"formatter": {
+		"enabled": true,
+		"formatWithErrors": true,
+		"indentStyle": "space",
+		"indentSize": 2,
+		"lineWidth": 120
+	},
+	"linter": {
+		"enabled": true,
+		"ignore": ["node_modules"]
+	}
+}
