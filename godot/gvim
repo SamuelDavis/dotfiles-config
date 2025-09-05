@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# usage: Exec Path: gvim
+#        Exec Args: {file}
+# default lspconfig.gdscript.setup() is fine
+
+SOCK="/tmp/godot.sock"
+FILE=${1}
+
+if [ -S "$SOCK" ]; then
+	nvim --server "$SOCK" --remote "$@"
+else
+	gnome-terminal --active -- nvim --listen "$SOCK" "$@"
+fi
