@@ -4,11 +4,23 @@
 #        Exec Args: {file}
 # default lspconfig.gdscript.setup() is fine
 
-SOCK="/tmp/godot.sock"
+SOCK="/tmp/godot.pipe"
 FILE=${1}
+EXEC=${2}
+
+for ITEM in $EXEC foot gnome-terminal; do
+	if command -v "$ITEM" 1>/dev/null; then
+		EXEC=$ITEM
+		break
+	fi
+done
+if [ -z $EXEC ]; then
+	echo "Unable to determine terminal executable." >&2
+	exit 1
+fi
 
 if [ -S "$SOCK" ]; then
 	nvim --server "$SOCK" --remote "$@"
 else
-	gnome-terminal --active -- nvim --listen "$SOCK" "$@"
+	$EXEC -- nvim --listen "$SOCK" "$@"
 fi
